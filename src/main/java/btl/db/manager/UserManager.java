@@ -21,25 +21,25 @@ public class UserManager implements BaseQueryScript {
 
     public List<List<?>> search(String className, Integer subjectId, String semesterCode, Boolean truot) throws SQLException {
         String queryString = "select *" +
-                "from student s" +
+                "from tb_user s" +
                 "         join class c on s.classID = c.classID" +
                 " where 1=1" +
                 (className == null ? "" : " and c.class_name like '%" + className + "%'") +
                 (subjectId != null ? "    and exists(select *" +
                         "             from mark m" +
                         "             where m.subjectID = " + subjectId +
-                        "               and s.studentID = m.studentID" +
+                        "               and s.tb_userID = m.tb_userID" +
                         (truot == null ? "" : " and m.mark < 4") +
                         "               and m.semesterCode = '" + semesterCode + "')" : "");
         return convertToList(statement.executeQuery(queryString));
     }
 
     public List<List<?>> findAll() throws SQLException {
-        return convertToList(statement.executeQuery("select * from student"));
+        return convertToList(statement.executeQuery("select * from tb_user"));
     }
 
     public void create(String firstName, String lastName, Short gender, String dob, Integer classId) throws SQLException {
-        statement.executeUpdate("Insert into student"
+        statement.executeUpdate("Insert into tb_user"
                 + "(first_name, last_name, gender, DoB, classID)"
                 + "values('" + firstName + "','" + lastName + "'," + gender + ",'" + dob + "', " + classId + ")");
     }
@@ -76,9 +76,9 @@ public class UserManager implements BaseQueryScript {
             output.add(resultSet.getInt(1));
             output.add(resultSet.getString(2));
             output.add(resultSet.getString(3));
-            output.add(resultSet.getInt(4) == 1 ? "Nam" : "Nữ");
-            output.add(resultSet.getString(5));
-            output.add(resultSet.getInt(6));
+            output.add(resultSet.getString(4));
+            output.add(resultSet.getInt(5) == 1 ? "Nam" : "Nữ");
+            output.add(resultSet.getString(6));
             o.add(output);
         }
         return o;
