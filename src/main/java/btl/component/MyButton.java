@@ -6,8 +6,10 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MyButton extends JButton {
+public class MyButton extends JButton implements ActionListener {
     public MyButton(String text) {
         Border line = new LineBorder(Color.BLUE);
         Border margin = new EmptyBorder(5, 15, 5, 15);
@@ -26,5 +28,10 @@ public class MyButton extends JButton {
     public MyButton(String text, int x, int y, int w, int h) {
         this(text);
         setBounds(x, y, w, h);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
