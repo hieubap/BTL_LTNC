@@ -17,8 +17,6 @@ import java.util.List;
 public class AdminLayout extends ActionRouter {
     List<JComponent> listScreen;
 
-    private WindowFrame windowFrame;
-
     public AdminLayout(WindowFrame windowFrame){
         this.windowFrame = windowFrame;
         listScreen = new ArrayList<>();

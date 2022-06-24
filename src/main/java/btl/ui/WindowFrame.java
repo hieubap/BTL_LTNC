@@ -11,7 +11,7 @@ import java.awt.*;
 import java.util.List;
 
 public class WindowFrame extends JFrame {
-    private UserEntity currentUser;
+    public UserEntity currentUser;
 
     private List<JComponent> listRoute;
     private AdminLayout adminLayout;

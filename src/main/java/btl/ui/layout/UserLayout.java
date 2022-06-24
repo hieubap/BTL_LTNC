@@ -14,7 +14,6 @@ import java.awt.*;
 public class UserLayout extends ActionRouter {
     private DanhSachPhim danhSachPhim;
 
-    private WindowFrame windowFrame;
 
     public UserLayout(WindowFrame windowFrame) {
         this.windowFrame = windowFrame;
@@ -53,6 +52,7 @@ public class UserLayout extends ActionRouter {
 
     @Override
     public void logout() {
+        showDanhSachPhim();
         windowFrame.showLogin();
     }
 

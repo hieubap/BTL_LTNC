@@ -10,6 +10,7 @@ import java.util.List;
 public class VeManager extends BaseManager<VeEntity> {
 
     private LichManager lichManager;
+
     public VeManager() throws SQLException, ClassNotFoundException {
         super("tb_ve");
         lichManager = new LichManager();
@@ -28,10 +29,27 @@ public class VeManager extends BaseManager<VeEntity> {
         return veEntity;
     }
 
+    public List<VeEntity> findByLichId(Integer lichId) throws SQLException {
+        return convertToEntities(
+                getStatement().executeQuery(
+                        "select * from tb_ve" +
+                                " where lich_id=" + lichId));
+    }
+
     public List<VeEntity> findByUserId(Integer userId) throws SQLException {
         return convertToEntities(
                 getStatement().executeQuery(
                         "select * from tb_ve" +
                                 " where user_id=" + userId));
+    }
+
+    @Override
+    public String queryCreate(VeEntity entity) {
+        return "Insert into tb_ve"
+                + "(lich_id, user_id, hang, cot)"
+                + "values(" + entity.getLichId()
+                + "," + entity.getUserId()
+                + "," + entity.getHang()
+                + "," + entity.getCot() + ")";
     }
 }
