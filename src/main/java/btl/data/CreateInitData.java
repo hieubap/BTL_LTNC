@@ -81,7 +81,8 @@ public class CreateInitData {
                 "        primary key," +
                 "    phong_id int," +
                 "    phim_id int," +
-                "    bat_dau datetime null);";
+                "    khung_gio int," +
+                "    ngay date null);";
         statement.executeUpdate(createLich);
 
         String createVe = "create table if not exists tb_ve" +
@@ -111,7 +112,7 @@ public class CreateInitData {
 //        Class.forName("com.mysql.jdbc.Driver");
 //        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/dat_cho_xem_phim", "root", "123456");
         initTable();
-        initData();
+//        initData();
         System.out.println("success !!!");
     }
 }

@@ -2,6 +2,7 @@ package btl.db.manager;
 
 import btl.db.base.BaseManager;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,13 +26,14 @@ public class LichManager extends BaseManager<LichEntity> {
         int idPhim = resultSet.getInt(3);
         entity.setPhimId(idPhim);
         entity.setKhungGio(resultSet.getInt(4));
-        entity.setThu(resultSet.getInt(5));
+//        entity.setThu(resultSet.getInt(5));
+        entity.setNgay(resultSet.getDate(5));
         PhongEntity phongEntity = phongManager.getById(idPhong);
-        if(phongEntity != null){
+        if (phongEntity != null) {
             entity.setTenPhong(phongEntity.getTen());
         }
         PhimEntity phimEntity = phimManager.getById(idPhim);
-        if(phimEntity != null){
+        if (phimEntity != null) {
             entity.setTenPhim(phimEntity.getTen());
         }
         return entity;
@@ -39,12 +41,14 @@ public class LichManager extends BaseManager<LichEntity> {
 
     @Override
     public String queryCreate(LichEntity entity) {
-        return "Insert into tb_lich"
-                + "(phong_id, phim_id, khung_gio, thu)"
+        String s ="Insert into tb_lich"
+                + "(phong_id, phim_id, khung_gio, ngay)"
                 + "values(" + entity.getPhongId()
                 + "," + entity.getPhimId()
                 + "," + entity.getKhungGio()
-                + "," + entity.getThu() + ")";
+//                + "," + entity.getThu()
+                + ",'" + entity.getNgay() + "')";
+        return s;
     }
 
     @Override
@@ -53,14 +57,18 @@ public class LichManager extends BaseManager<LichEntity> {
                 " set phong_id=" + entity.getPhongId()
                 + ",phim_id=" + entity.getPhimId()
                 + ",khung_gio=" + entity.getKhungGio()
-                + ",thu=" + entity.getThu()
-                + " where id=" + entity.getId();
+//                + ",thu=" + entity.getThu()
+                + ",ngay='" + entity.getNgay()
+                + "' where id=" + entity.getId();
     }
 
     public List<LichEntity> findByPhimId(Integer phimId) throws SQLException {
+        Date current = new Date(System.currentTimeMillis());
         return convertToEntities(
                 getStatement().executeQuery(
                         "select * from tb_lich" +
-                                " where phim_id=" + phimId));
+                                " where ngay >= '" + current +
+                                "' and phim_id=" + phimId +
+                                " order by ngay"));
     }
 }

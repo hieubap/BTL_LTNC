@@ -40,7 +40,7 @@ public final class TableLich extends MyTable<LichEntity, LichManager, ModalLich>
 
     @Override
     public String[] getColumn() {
-        return new String[]{"ID", "Phòng", "Phim", "Thời gian", "Thứ", "Action"};
+        return new String[]{"ID", "Phòng", "Phim", "Thời gian", "Ngày", "Action"};
     }
 
     @Override
@@ -59,8 +59,8 @@ public final class TableLich extends MyTable<LichEntity, LichManager, ModalLich>
         } else {
             list.add("");
         }
-        if (e.getThu() != null && 0 < e.getThu() && e.getThu() <= 7) {
-            list.add(Global.enumThu[e.getThu() - 1].label);
+        if (e.getNgay() != null) {
+            list.add(e.getNgay());
         } else {
             list.add("");
         }

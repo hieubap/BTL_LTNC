@@ -2,6 +2,8 @@ package btl.db.manager;
 
 import btl.db.base.BaseEntity;
 
+import java.sql.Date;
+
 public class LichEntity extends BaseEntity {
     private Integer id;
 
@@ -14,6 +16,16 @@ public class LichEntity extends BaseEntity {
     private Integer khungGio;
 
     private Integer thu;
+
+    private Date ngay;
+
+    public Date getNgay() {
+        return ngay;
+    }
+
+    public void setNgay(Date ngay) {
+        this.ngay = ngay;
+    }
 
     private Integer conSlot;
 

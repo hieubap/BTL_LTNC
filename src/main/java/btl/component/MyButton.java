@@ -15,7 +15,7 @@ public class MyButton extends JButton implements ActionListener {
         Border margin = new EmptyBorder(5, 15, 5, 15);
         Border compound = new CompoundBorder(line, margin);
 
-        setBorder(compound);
+//        setBorder(new RoundedBorder(15));
         setText(text);
 
     }
@@ -33,5 +33,29 @@ public class MyButton extends JButton implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+    private static class RoundedBorder implements Border {
+
+        private int radius;
+
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+
+
+        public Insets getBorderInsets(Component c) {
+            return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+        }
+
+
+        public boolean isBorderOpaque() {
+            return true;
+        }
+
+
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            g.drawRoundRect(x, y, width-1, height-1, radius, radius);
+        }
     }
 }
