@@ -28,31 +28,37 @@ public abstract class BaseManager<Entity extends BaseEntity> implements BaseQuer
         return statement;
     }
 
-    public String querySearch(Entity entity){
+    public String querySearch(Entity entity) {
         return "select * from " + tableName;
     }
 
-    public String queryUpdate(Entity entity){
+    public String queryUpdate(Entity entity) {
         return "delete * from " + tableName + " where 1=2";
     }
 
-    public String queryCreate(Entity entity){
+    public String queryCreate(Entity entity) {
         return "delete * from " + tableName + " where 1=2";
     }
 
     @Override
     public List<Entity> search(Entity entity) throws SQLException {
-        return convertToEntities(statement.executeQuery(querySearch(entity)));
+        String s = querySearch(entity);
+        System.out.println(s);
+        return convertToEntities(statement.executeQuery(s));
     }
 
     @Override
     public int create(Entity entity) throws SQLException {
-        return getStatement().executeUpdate(queryCreate(entity));
+        String s = queryCreate(entity);
+        System.out.println(s);
+        return getStatement().executeUpdate(s);
     }
 
     @Override
     public int update(Entity entity) throws SQLException {
-        return getStatement().executeUpdate(queryUpdate(entity));
+        String s = queryUpdate(entity);
+        System.out.println(s);
+        return getStatement().executeUpdate(s);
     }
 
     @Override

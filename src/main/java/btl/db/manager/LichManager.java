@@ -71,4 +71,18 @@ public class LichManager extends BaseManager<LichEntity> {
                                 "' and phim_id=" + phimId +
                                 " order by ngay"));
     }
+
+    public boolean findByPhimId(LichEntity lich) throws SQLException {
+        String s = "select case when exists(select 1 from tb_lich" +
+                " where phong_id = " + lich.getPhongId() +
+                " and khung_gio=" + lich.getKhungGio() +
+                " and ngay='" + lich.getNgay() +
+                "' order by ngay) then true else false end";
+        System.out.println(s);
+        ResultSet r = getStatement().executeQuery(s);
+        if(r.next()){
+            return r.getBoolean(1);
+        }
+        return false;
+    }
 }

@@ -61,6 +61,10 @@ public class ModalLich extends MyModal<LichEntity, LichManager> {
             showError("Vui lòng nhập ngày đúng dạng YYYY-MM-DD");
             return;
         }
+        if(manager.findByPhimId(data)){
+            showError("Lịch bị trùng");
+            return;
+        }
 //        data.setPassword(listInput.get(1).getText());
 //        data.setFullName(listInput.get(2).getText());
 //        data.setBirth(listInput.get(4).getText());
