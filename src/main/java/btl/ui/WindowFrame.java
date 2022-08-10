@@ -12,12 +12,8 @@ import java.util.List;
 
 public class WindowFrame extends JFrame {
     public UserEntity currentUser;
-
-    private List<JComponent> listRoute;
     private AdminLayout adminLayout;
-
     private UserLayout userLayout;
-
     private LoginScreen loginScreen;
 
     public WindowFrame() throws HeadlessException {

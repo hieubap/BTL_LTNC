@@ -1,13 +1,38 @@
 package btl.component;
 
 import javax.swing.*;
+import javax.swing.event.AncestorListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class InputText extends InputScript {
     private final JTextField jTextField;
+    private String placeholder;
 
     public InputText() {
         jTextField = new JTextField();
+        jTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(jTextField.getText().equals(placeholder)){
+                    jTextField.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(jTextField.getText().equals("")){
+                    jTextField.setText(placeholder);
+                }
+            }
+        });
         add(jTextField);
+    }
+
+    public InputText(String placeholder) {
+        this();
+        this.placeholder = placeholder;
+        jTextField.setText(placeholder);
     }
 
     @Override
@@ -19,6 +44,9 @@ public class InputText extends InputScript {
 
     @Override
     public String getText() {
+        if(jTextField.getText().equals(placeholder)){
+            return "";
+        }
         return jTextField.getText();
     }
 
@@ -26,5 +54,7 @@ public class InputText extends InputScript {
     public void setText(String text) {
         jTextField.setText(text);
     }
-
+    public void setPlaceholder(String text){
+        this.placeholder = text;
+    }
 }

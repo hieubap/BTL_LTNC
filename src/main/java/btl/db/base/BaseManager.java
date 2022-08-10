@@ -12,13 +12,6 @@ public abstract class BaseManager<Entity extends BaseEntity> implements BaseQuer
     protected final Statement statement;
     protected String tableName;
 
-    public abstract Entity convertToEntity(ResultSet resultSet) throws SQLException;
-
-    public Entity convertToEntityNext(ResultSet resultSet) throws SQLException {
-        if (!resultSet.next()) return null;
-        return convertToEntity(resultSet);
-    }
-
     public BaseManager(String tableName) throws ClassNotFoundException, SQLException {
         this.statement = ConnectDb.connection.createStatement();
         this.tableName = tableName;
@@ -81,6 +74,12 @@ public abstract class BaseManager<Entity extends BaseEntity> implements BaseQuer
     }
 
 
+    public abstract Entity convertToEntity(ResultSet resultSet) throws SQLException;
+
+    public Entity convertToEntityNext(ResultSet resultSet) throws SQLException {
+        if (!resultSet.next()) return null;
+        return convertToEntity(resultSet);
+    }
     public List<Entity> convertToEntities(ResultSet resultSet) throws SQLException {
         List<Entity> entities = new ArrayList<>();
         while (resultSet.next()) {

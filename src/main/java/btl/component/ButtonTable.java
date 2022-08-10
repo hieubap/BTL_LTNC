@@ -22,7 +22,7 @@ public class ButtonTable extends JButton implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        actionTable.event(index);
+        actionTable.clickRowBtn(index);
     }
 
     @Override

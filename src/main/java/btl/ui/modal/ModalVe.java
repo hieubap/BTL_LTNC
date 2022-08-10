@@ -16,7 +16,7 @@ public class ModalVe extends MyModal<VeEntity, VeManager> {
         try {
             phongManager = new PhongManager();
 
-            addInputSelect(40, 0, "Phòng",
+            addInputEnum(40, 0, "Phòng",
                     phongManager.findAll()
                             .stream().map(
                                     i -> new OptionSelect(i.getId(), i.getTen()))
@@ -24,7 +24,7 @@ public class ModalVe extends MyModal<VeEntity, VeManager> {
 
             phimManager = new PhimManager();
 
-            addInputSelect(40, 70, "Phim",
+            addInputEnum(40, 70, "Phim",
                     phimManager.findAll()
                             .stream().map(
                                     i -> new OptionSelect(i.getId(), i.getTen()))
@@ -34,7 +34,7 @@ public class ModalVe extends MyModal<VeEntity, VeManager> {
             throw new RuntimeException(e);
         }
 
-        addInputSelect(40, 140, "Khung giờ", Global.enumKhungGio);
+        addInputEnum(40, 140, "Khung giờ", Global.enumKhungGio);
 
         setSize(300, 300);
         super.setup();

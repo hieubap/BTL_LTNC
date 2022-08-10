@@ -2,7 +2,6 @@ package btl.ui.modal;
 
 import btl.Global;
 import btl.component.MyModal;
-import btl.component.InputSelect;
 import btl.component.OptionSelect;
 import btl.db.manager.LichEntity;
 import btl.db.manager.LichManager;
@@ -11,8 +10,6 @@ import btl.db.manager.PhongManager;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class ModalLich extends MyModal<LichEntity, LichManager> {
@@ -23,7 +20,7 @@ public class ModalLich extends MyModal<LichEntity, LichManager> {
         try {
             phongManager = new PhongManager();
 
-            addInputSelect(40, 0, "Phòng",
+            addInputEnum(40, 0, "Phòng",
                     phongManager.findAll()
                             .stream().map(
                                     i -> new OptionSelect(i.getId(), i.getTen()))
@@ -31,7 +28,7 @@ public class ModalLich extends MyModal<LichEntity, LichManager> {
 
             phimManager = new PhimManager();
 
-            addInputSelect(40, 70, "Phim",
+            addInputEnum(40, 70, "Phim",
                     phimManager.findAll()
                             .stream().map(
                                     i -> new OptionSelect(i.getId(), i.getTen()))
@@ -41,7 +38,7 @@ public class ModalLich extends MyModal<LichEntity, LichManager> {
             throw new RuntimeException(e);
         }
 
-        addInputSelect(40, 140, "Khung giờ", Global.enumKhungGio);
+        addInputEnum(40, 140, "Khung giờ", Global.enumKhungGio);
 //        addInputSelect(40, 210, "Thứ", Global.enumThu);
         addInputText(40, 210, "Ngày");
 

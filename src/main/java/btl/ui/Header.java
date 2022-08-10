@@ -9,23 +9,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Header extends JComponent {
-    public static int HEIGHT_HEADER = 60;
+    public static int HEIGHT_HEADER = Global.HEIGHT_HEADER;
+    private MyButton logoutBtn;
+    private MyButton homeBtn;
+
     public Header(ActionRouter actionRouter) {
         setSize(Global.WIDTH_SCREEN, HEIGHT_HEADER);
 
-        MyButton logout = new MyButton("Logout");
-        logout.setBounds(Global.WIDTH_SCREEN - 150, 10,
+        logoutBtn = new MyButton("Logout");
+        logoutBtn.setBounds(Global.WIDTH_SCREEN - 150, 10,
                 100, 40);
-        logout.addActionListener(e -> actionRouter.logout());
+        logoutBtn.addActionListener(e -> actionRouter.logout());
 
-        if(actionRouter instanceof UserLayout){
-            MyButton home = new MyButton("Home");
-            home.setBounds(Global.WIDTH_SCREEN - 270, 10,
+        if (actionRouter instanceof UserLayout) {
+            homeBtn = new MyButton("Home");
+            homeBtn.setBounds(Global.WIDTH_SCREEN - 270, 10,
                     100, 40);
-            home.addActionListener(e -> actionRouter.goHome());
-            add(home);
+            homeBtn.addActionListener(e -> actionRouter.goHome());
+            add(homeBtn);
         }
-        add(logout);
+        add(logoutBtn);
         setLayout(null);
     }
 
@@ -33,11 +36,11 @@ public class Header extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(new Color(0xef4444));
-        g.fillRect(0,0,Global.WIDTH_SCREEN, HEIGHT_HEADER);
+        g.fillRect(0, 0, Global.WIDTH_SCREEN, HEIGHT_HEADER);
 
         g.setColor(Color.white);
-        g.setFont(new Font("Serif", Font.BOLD, 30));
-        g.drawString("Quản lý rạp chiếu phim",10,40);
+        g.setFont(new Font("Serif", Font.BOLD, Global.HEADER_TITLE_SIZE));
+        g.drawString("Quản lý rạp chiếu phim", Global.HEADER_TITLE_X, Global.HEADER_TITLE_Y);
 
     }
 }

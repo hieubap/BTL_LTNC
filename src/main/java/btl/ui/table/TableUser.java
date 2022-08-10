@@ -10,6 +10,11 @@ import java.util.List;
 
 public class TableUser extends MyTable<UserEntity, UserManager, ModalUser> {
     @Override
+    public String placeholder() {
+        return "Tìm kiếm họ và tên";
+    }
+
+    @Override
     public String[] getColumn() {
         return new String[]{"ID", "Username", "Password", "Họ tên", "Giới tính", "Ngày sinh", "Action"};
     }
@@ -17,7 +22,7 @@ public class TableUser extends MyTable<UserEntity, UserManager, ModalUser> {
     @Override
     public Integer[] getWidthCol() {
         int x = 90 / 5;
-        return new Integer[]{5, x, x, x, x, x, 5};
+        return new Integer[]{5, x, x, x, x-2, x, 7};
     }
 
     @Override

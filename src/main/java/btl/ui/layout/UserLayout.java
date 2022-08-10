@@ -13,6 +13,8 @@ import java.awt.*;
 
 public class UserLayout extends ActionRouter {
     private DanhSachPhim danhSachPhim;
+    private DanhSachLich danhSachLich;
+    private ChonGhe chonGhe;
 
 
     public UserLayout(WindowFrame windowFrame) {
@@ -37,8 +39,9 @@ public class UserLayout extends ActionRouter {
     public void showDanhSachLich(int index) {
         if (index < DanhSachPhim.listPhim.size()) {
             remove(0);
-            add(new DanhSachLich(
-                    DanhSachPhim.listPhim.get(index).getId(), this), 0);
+            danhSachLich = new DanhSachLich(
+                    DanhSachPhim.listPhim.get(index).getId(), this);
+            add(danhSachLich, 0);
             repaint();
         }
     }
@@ -46,7 +49,8 @@ public class UserLayout extends ActionRouter {
     @Override
     public void showChonGhe(LichEntity lichEntity) {
         remove(0);
-        add(new ChonGhe(this, lichEntity), 0);
+        chonGhe = new ChonGhe(this, lichEntity);
+        add(chonGhe, 0);
         repaint();
     }
 

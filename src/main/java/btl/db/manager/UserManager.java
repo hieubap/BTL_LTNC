@@ -42,6 +42,11 @@ public class UserManager extends BaseManager<UserEntity> {
     }
 
     @Override
+    public String querySearch(UserEntity entity) {
+        return "select * from " + tableName + " where full_name like '%" + entity.textSearch + "%'";
+    }
+
+    @Override
     public String queryUpdate(UserEntity entity) {
         return "update tb_user" +
                 " set user_name='" + entity.getUsername()

@@ -16,6 +16,8 @@ import java.util.List;
 
 public class AdminLayout extends ActionRouter {
     List<JComponent> listScreen;
+    private Header header;
+    private SideBar sidebar;
 
     public AdminLayout(WindowFrame windowFrame){
         this.windowFrame = windowFrame;
@@ -25,8 +27,10 @@ public class AdminLayout extends ActionRouter {
         listScreen.add(new TablePhim());
         listScreen.add(new TableLich());
 
-        add(new Header(this));
-        add(new SideBar(this));
+        header = new Header(this);
+        sidebar = new SideBar(this);
+        add(header);
+        add(sidebar);
         add(listScreen.get(0), 0);
 
         setSize(Global.WIDTH_SCREEN, Global.HEIGHT_SCREEN);

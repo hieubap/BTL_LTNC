@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyModal<Entity extends BaseEntity, Manager extends BaseManager<Entity>> extends JDialog {
+public class MyModal<Entity extends BaseEntity,
+        Manager extends BaseManager<Entity>> extends JDialog {
     protected Entity data = null;
 
     public int width = 300;
@@ -22,6 +23,8 @@ public class MyModal<Entity extends BaseEntity, Manager extends BaseManager<Enti
     public Manager manager;
 
     public ActionTable actionTable;
+
+//    public MyTable<Entity,Manager, MyModal<Entity,Manager>> myTable;
 
     protected JLabel errorLabel;
 
@@ -83,6 +86,11 @@ public class MyModal<Entity extends BaseEntity, Manager extends BaseManager<Enti
         data = entity;
         setVisible(true);
     }
+    public void showError(String text){
+        errorLabel.setText(text);
+        errorLabel.setVisible(true);
+    }
+
     public void onOk() throws SQLException {
         if(data.getId() == null){
             manager.create(data);
@@ -103,11 +111,6 @@ public class MyModal<Entity extends BaseEntity, Manager extends BaseManager<Enti
         setVisible(false);
     }
 
-    public void showError(String text){
-        errorLabel.setText(text);
-        errorLabel.setVisible(true);
-    }
-
     public void addTitle(int x, int y, String title, InputScript input) {
         JLabel jLabel = new JLabel(title);
         jLabel.setBounds(x, y, Global.WIDTH_INPUT, Global.HEIGHT_INPUT);
@@ -121,11 +124,11 @@ public class MyModal<Entity extends BaseEntity, Manager extends BaseManager<Enti
         addTitle(x, y, title,new InputText());
     }
 
-    public void addInputSelect(int x, int y, String title, List<OptionSelect> list) {
+    public void addInputEnum(int x, int y, String title, List<OptionSelect> list) {
         addTitle(x, y, title,new InputSelect(list));
     }
 
-    public void addInputSelect(int x, int y, String title, OptionSelect[] list) {
+    public void addInputEnum(int x, int y, String title, OptionSelect[] list) {
         addTitle(x, y, title,new InputSelect(list));
     }
 

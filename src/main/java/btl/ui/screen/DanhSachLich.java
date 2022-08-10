@@ -8,8 +8,9 @@ import btl.ui.table.TableLich;
 import javax.swing.*;
 
 public class DanhSachLich extends JPanel {
+    private TableLich tableLichUser;
     public DanhSachLich(int phimId, ActionRouter actionRouter) {
-        TableLich tableLichUser = new TableLich(100, 0, phimId,actionRouter);
+        tableLichUser = new TableLich(100, 0, phimId,actionRouter);
         add(tableLichUser);
         setBounds(0,
                 Header.HEIGHT_HEADER,

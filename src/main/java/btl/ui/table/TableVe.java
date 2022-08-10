@@ -3,11 +3,8 @@ package btl.ui.table;
 import btl.Global;
 import btl.component.ActionRouter;
 import btl.component.MyTable;
-import btl.db.manager.LichEntity;
-import btl.db.manager.LichManager;
 import btl.db.manager.VeEntity;
 import btl.db.manager.VeManager;
-import btl.ui.modal.ModalLich;
 import btl.ui.modal.ModalVe;
 
 import java.sql.SQLException;
@@ -84,9 +81,9 @@ public final class TableVe extends MyTable<VeEntity, VeManager, ModalVe> {
     }
 
     @Override
-    public int event(int row) {
+    public int clickRowBtn(int row) {
         if (id == 0)
-            return super.event(row);
+            return super.clickRowBtn(row);
         else {
 //            actionRouter.showChonGhe(listData.get(row));
             return 0;

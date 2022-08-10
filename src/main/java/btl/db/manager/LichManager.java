@@ -40,8 +40,17 @@ public class LichManager extends BaseManager<LichEntity> {
     }
 
     @Override
+    public String querySearch(LichEntity entity) {
+        return "select * from " + tableName +
+                " join tb_phim tp on tb_lich.phim_id = tp.id " +
+                " join tb_phong t on tb_lich.phong_id = t.id " +
+                " where tp.ten like '%" + entity.textSearch + "%'" +
+                " or t.ten like '%" + entity.textSearch + "%'";
+    }
+
+    @Override
     public String queryCreate(LichEntity entity) {
-        String s ="Insert into tb_lich"
+        String s = "Insert into tb_lich"
                 + "(phong_id, phim_id, khung_gio, ngay)"
                 + "values(" + entity.getPhongId()
                 + "," + entity.getPhimId()
@@ -80,7 +89,7 @@ public class LichManager extends BaseManager<LichEntity> {
                 "' order by ngay) then true else false end";
         System.out.println(s);
         ResultSet r = getStatement().executeQuery(s);
-        if(r.next()){
+        if (r.next()) {
             return r.getBoolean(1);
         }
         return false;

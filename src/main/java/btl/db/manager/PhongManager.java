@@ -25,7 +25,10 @@ public class PhongManager extends BaseManager<PhongEntity> {
                 + "(id, ten)"
                 + "values(" + id + ",'" + ten + "')");
     }
-
+    @Override
+    public String querySearch(PhongEntity entity) {
+        return "select * from " + tableName + " where ten like '%" + entity.textSearch + "%'";
+    }
     @Override
     public String queryCreate(PhongEntity entity) {
         return "Insert into tb_phong"

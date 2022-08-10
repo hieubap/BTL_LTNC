@@ -1,10 +1,10 @@
 package btl.ui.screen;
 
 import btl.Global;
+import btl.component.ActionRouter;
 import btl.db.manager.PhimEntity;
 import btl.db.manager.PhimManager;
 import btl.ui.Header;
-import btl.ui.layout.UserLayout;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,7 @@ public class DanhSachPhim extends JScrollPane {
 
     private JPanel jPanel;
 
-    public DanhSachPhim(UserLayout userLayout) {
+    public DanhSachPhim(ActionRouter actionRouter) {
         jPanel = new JPanel();
         jPanel.setSize(Global.WIDTH_SCREEN - 50, Global.HEIGHT_SCREEN);
         jPanel.setLayout(null);
@@ -33,8 +33,12 @@ public class DanhSachPhim extends JScrollPane {
             for (int i = 0; i < listPhim.size(); i++) {
                 JButton jButton = new JButton(listPhim.get(i).getTen());
                 jButton.setFont(new Font("Serif", Font.BOLD, 20));
-                jButton.setBounds(70 + (i % 4) * 400, (i / 4) * 400, 350, 350);
-                jButton.addActionListener(new ActionSelectPhim(i, userLayout));
+                jButton.setBounds(
+                        Global.PHIM_PADDING + Global.PHIM_MARGIN + (i % 4) * Global.PHIM_BOX_SIZE,
+                        (i / 4) * Global.PHIM_BOX_SIZE + Global.PHIM_MARGIN,
+                        Global.PHIM_SIZE,
+                        Global.PHIM_SIZE);
+                jButton.addActionListener(new ActionSelectPhim(i, actionRouter));
                 add(jButton);
                 jPanel.add(jButton);
             }
@@ -57,17 +61,18 @@ public class DanhSachPhim extends JScrollPane {
         repaint();
     }
 
-    public static class ActionSelectPhim implements ActionListener{
+    public static class ActionSelectPhim implements ActionListener {
         private int index = -1;
-        private final UserLayout userLayout;
-        public ActionSelectPhim(int i,UserLayout userLayout) {
+        private final ActionRouter actionRouter;
+
+        public ActionSelectPhim(int i, ActionRouter userLayout) {
             this.index = i;
-            this.userLayout = userLayout;
+            this.actionRouter = userLayout;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            userLayout.showDanhSachLich(index);
+            actionRouter.showDanhSachLich(index);
         }
     }
 }

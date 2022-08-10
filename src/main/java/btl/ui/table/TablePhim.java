@@ -10,6 +10,11 @@ import java.util.List;
 
 public class TablePhim extends MyTable<PhimEntity, PhimManager, ModalPhim> {
     @Override
+    public String placeholder() {
+        return "Tìm kiếm tên phim";
+    }
+
+    @Override
     public String[] getColumn() {
         return new String[]{"ID", "Tên phim", "Thời hạn","Action"};
     }

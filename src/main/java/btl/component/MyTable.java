@@ -24,6 +24,11 @@ public abstract class MyTable<Entity extends BaseEntity,
         Modal extends MyModal<Entity, Manager>> extends JPanel
         implements ActionTable {
     protected MyButton buttonCreate;
+
+    protected MyButton buttonSearch;
+
+    protected InputText inputTimKiem;
+
     protected Modal myModal;
 
     protected Manager myManager;
@@ -111,25 +116,24 @@ public abstract class MyTable<Entity extends BaseEntity,
 
     public abstract Integer[] getWidthCol();
 
-    public void setup(JTable jTable) {
-        // Initializing the JTable
-        double perW = (double) (Global.WIDTH_SCREEN - SideBar.WIDTH_SIDEBAR - 35) / 100;
-        for (int i = 0; i < getWidthCol().length; i++) {
-            jTable
-                    .getColumnModel()
-                    .getColumn(i)
-                    .setPreferredWidth((int) (getWidthCol()[i] * perW));
-        }
-        JScrollPane sp = new JScrollPane(jTable);
-        sp.setBounds(0, y,
-                Global.WIDTH_SCREEN - SideBar.WIDTH_SIDEBAR - 20, Global.HEIGHT_SCREEN - Header.HEIGHT_HEADER - 110);
-
-        setBounds(x, y,
-                Global.WIDTH_SCREEN - SideBar.WIDTH_SIDEBAR - 20, Global.HEIGHT_SCREEN - Header.HEIGHT_HEADER);
-        add(sp, 0);
-    }
 
     public void renderComponent() {
+        inputTimKiem = new InputText(placeholder());
+        inputTimKiem.setBounds(120, 10, 500, 30);
+
+        buttonSearch = new MyButton("Tìm");
+        buttonSearch.setBounds(620, 10, 100, 30);
+        buttonSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    search(inputTimKiem.getText());
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
         buttonCreate = new MyButton("Thêm mới");
         buttonCreate.setBounds(10, 10, 100, 30);
         buttonCreate.addActionListener(new ActionListener() {
@@ -138,6 +142,8 @@ public abstract class MyTable<Entity extends BaseEntity,
                 myModal.show(getInstantEntity());
             }
         });
+        add(inputTimKiem);
+        add(buttonSearch);
         add(buttonCreate);
     }
 
@@ -191,7 +197,7 @@ public abstract class MyTable<Entity extends BaseEntity,
     }
 
     @Override
-    public int event(int row) {
+    public int clickRowBtn(int row) {
         System.out.println("action edit on " + row);
         myModal.show(listData.get(row));
         return 0;
@@ -199,6 +205,12 @@ public abstract class MyTable<Entity extends BaseEntity,
 
     public void loadData() throws SQLException {
         afterLoadData(myManager.findAll());
+    }
+
+    public void search(String text) throws SQLException {
+        Entity e = getInstantEntity();
+        e.setTextSearch(text);
+        afterLoadData(myManager.search(e));
     }
 
     public void afterLoadData(List<Entity> list) {
@@ -220,5 +232,29 @@ public abstract class MyTable<Entity extends BaseEntity,
         }
         setup(jTable);
         setLayout(null);
+    }
+
+    public void setup(JTable jTable) {
+        // Initializing the JTable
+        double perW = (double) (Global.WIDTH_SCREEN - SideBar.WIDTH_SIDEBAR - Global.TABLE_PADDING*2 - 35) / 100;
+        for (int i = 0; i < getWidthCol().length; i++) {
+            jTable
+                    .getColumnModel()
+                    .getColumn(i)
+                    .setPreferredWidth((int) (getWidthCol()[i] * perW));
+        }
+        JScrollPane sp = new JScrollPane(jTable);
+        sp.setBounds(Global.TABLE_PADDING, y,
+                Global.WIDTH_SCREEN - SideBar.WIDTH_SIDEBAR - Global.TABLE_PADDING*2 - 20,
+                Global.HEIGHT_SCREEN - Header.HEIGHT_HEADER - Global.TABLE_PADDING*2 - Global.TABLE_HEIGHT_HEAD);
+
+        setBounds(x, y,
+                Global.WIDTH_SCREEN - SideBar.WIDTH_SIDEBAR,
+                Global.HEIGHT_SCREEN - Header.HEIGHT_HEADER);
+        add(sp, 0);
+    }
+
+    public String placeholder(){
+        return "Tìm kiếm";
     }
 }

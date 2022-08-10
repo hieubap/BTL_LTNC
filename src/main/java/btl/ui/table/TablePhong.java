@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TablePhong extends MyTable<PhongEntity, PhongManager, ModalPhong> {
-
+    @Override
+    public String placeholder() {
+        return "Tìm kiếm tên phòng";
+    }
     @Override
     public String[] getColumn() {
         return new String[]{"ID", "Tên phòng","Action"};

@@ -2,6 +2,7 @@ package btl.component;
 
 import btl.ui.layout.AdminLayout;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ButtonSidebar extends MyButton {
@@ -12,6 +13,8 @@ public class ButtonSidebar extends MyButton {
         super(text, x, y, w,h);
         this.adminLayout = adminLayout;
         this.index = index;
+        setFont(new Font("Serif", Font.BOLD, 20));
+        setBackground(Color.WHITE);
         addActionListener(this);
     }
 

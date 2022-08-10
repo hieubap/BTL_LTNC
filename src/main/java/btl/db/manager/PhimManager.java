@@ -25,6 +25,18 @@ public class PhimManager extends BaseManager<PhimEntity> {
                 + "values(" + id + ",'" + ten + "','" + thoiHan + "')");
     }
 
+    /**
+     * public List<PhimEntity> search(PhimEntity entity) throws SQLException {
+     *         String s = "select * from " + tableName + " where ten like '%" + entity.textSearch + "%'";
+     *         return convertToEntities(statement.executeQuery(s));
+     *     }
+     */
+
+    @Override
+    public String querySearch(PhimEntity entity) {
+        return "select * from " + tableName + " where ten like '%" + entity.textSearch + "%'";
+    }
+
     @Override
     public String queryCreate(PhimEntity entity) {
         return "Insert into tb_phim"

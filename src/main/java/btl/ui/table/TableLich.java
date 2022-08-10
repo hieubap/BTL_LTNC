@@ -7,12 +7,15 @@ import btl.db.manager.LichEntity;
 import btl.db.manager.LichManager;
 import btl.ui.modal.ModalLich;
 
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class TableLich extends MyTable<LichEntity, LichManager, ModalLich> {
+    @Override
+    public String placeholder() {
+        return "Tìm kiếm tên phòng hoặc tên phim";
+    }
     private ActionRouter actionRouter;
 
     public TableLich() {
@@ -78,9 +81,9 @@ public final class TableLich extends MyTable<LichEntity, LichManager, ModalLich>
     }
 
     @Override
-    public int event(int row) {
+    public int clickRowBtn(int row) {
         if (id == 0)
-            return super.event(row);
+            return super.clickRowBtn(row);
         else {
             actionRouter.showChonGhe(listData.get(row));
             return 0;

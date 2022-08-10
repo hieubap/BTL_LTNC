@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SideBar extends JComponent {
-    public static int WIDTH_SIDEBAR = 150;
+    public static int WIDTH_SIDEBAR = Global.WIDTH_SIDEBAR;
 
     public static String[] sidebar = {"Danh sách khách hàng", "Danh sách phòng", "Danh sách phim", "Xếp lịch", "Lịch sử"};
 
@@ -22,5 +22,12 @@ public class SideBar extends JComponent {
 
         setBounds(0, Header.HEIGHT_HEADER, WIDTH_SIDEBAR, Global.HEIGHT_SCREEN - Header.HEIGHT_HEADER);
         setLayout(null);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        g.fillRect(0,0, WIDTH_SIDEBAR, Global.HEIGHT_SCREEN - Header.HEIGHT_HEADER);
     }
 }

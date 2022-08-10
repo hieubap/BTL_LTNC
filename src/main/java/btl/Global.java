@@ -5,10 +5,58 @@ import btl.component.OptionSelect;
 import java.util.List;
 
 public class Global {
-    public static int WIDTH_SCREEN = 1700;
-    public static int HEIGHT_SCREEN = 950;
+    public static int WIDTH_SCREEN = 1500;
+    public static int HEIGHT_SCREEN = 900;
+
+    // login
+    public static int WIDTH_LOGIN = 400;
+    public static int HEIGHT_LOGIN = 400;
+    public static int WIDTH_CONTENT = 200;
+    public static int HEIGHT_CONTENT = 50;
+    public static int POS_NAME_X = 480;
+    public static int POS_NAME_Y = 100;
+    public static int SIZE_NAME = 40;
+
+
+    // header
+    public static int HEIGHT_HEADER = 80;
+    public static int HEADER_TITLE_SIZE = 30;
+    public static int HEADER_TITLE_X = 20;
+    public static int HEADER_TITLE_Y = HEIGHT_HEADER / 2 + HEADER_TITLE_SIZE / 4;
+
+
+    // sidebar
+    public static int WIDTH_SIDEBAR = 250;
 
     public static int HEIGHT_HEAD_TABLE = 50;
+
+    // table
+    public static int TABLE_PADDING = 20;
+    public static int TABLE_HEIGHT_HEAD = 100;
+
+    // button màn ds phim
+    public static int PHIM_HEIGHT = HEIGHT_SCREEN - HEIGHT_HEADER;
+    public static int PHIM_PADDING = 20;
+    public static int PHIM_MARGIN = 20;
+    public static int PHIM_BOX_SIZE = (WIDTH_SCREEN - PHIM_PADDING * 2 - 20) / 4;
+    public static int PHIM_SIZE = PHIM_BOX_SIZE - PHIM_MARGIN * 2;
+    public static int MAN_HINH_X = 400;
+    public static int MAN_HINH_Y = 650;
+    public static int THONG_TIN_X = 900;
+    public static int THONG_TIN_Y = 0;
+    public static int THONG_TIN_LEFT = THONG_TIN_X + 100;
+    public static int THONG_TIN_TOP = THONG_TIN_Y + 100;
+    public static int BTN_SUBMIT_HEIGHT = 60;
+    public static int BTN_SUBMIT_WIDTH = (WIDTH_SCREEN - THONG_TIN_X) / 2;
+    public static int BTN_SUBMIT_Y = HEIGHT_SCREEN - HEIGHT_HEADER - BTN_SUBMIT_HEIGHT - 50;
+
+
+    // ds hàng ghế
+    public static int GHE_X = 60;
+    public static int GHE_Y = 20;
+    public static int GHE_PADDING = 5;
+    public static int GHE_SIZE = 70;
+    public static int GHE_BOX_SIZE = GHE_SIZE + GHE_PADDING;
 
     // modal
     public static int HEIGHT_LABEL = 30;
@@ -16,6 +64,13 @@ public class Global {
     public static int WIDTH_INPUT = 200;
 
     public static int sizeKhungGio = 6;
+
+    public static String getKhungGio(int index) {
+        if (0 < index && index < sizeKhungGio + 1)
+            return enumKhungGio[index - 1].label;
+        return "";
+    }
+
     public static OptionSelect[] enumKhungGio = new OptionSelect[]{
             new OptionSelect(1, "7:00 - 9:00"),
             new OptionSelect(2, "9:30 - 11:30"),

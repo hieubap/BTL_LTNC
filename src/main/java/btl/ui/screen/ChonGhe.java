@@ -32,7 +32,10 @@ public class ChonGhe extends JPanel {
 
     private List<ButtonGhe> listButtonSlot;
 
+    private List<JLabel> listLabel;
+
     public ChonGhe(ActionRouter actionRouter, LichEntity lich) {
+        listLabel = new ArrayList<>();
         this.currentUserId = actionRouter.windowFrame.currentUser.getId();
         this.lich = lich;
         this.actionRouter = actionRouter;
@@ -47,7 +50,11 @@ public class ChonGhe extends JPanel {
         setLayout(null);
         button = new JButton("Đặt vé");
         button.setFont(new Font("Serif", Font.BOLD, 20));
-        button.setBounds(1100, 330, 200, 50);
+        button.setBounds(
+                Global.THONG_TIN_X + Global.BTN_SUBMIT_WIDTH,
+                Global.BTN_SUBMIT_Y,
+                Global.BTN_SUBMIT_WIDTH,
+                Global.BTN_SUBMIT_HEIGHT);
         button.addActionListener(e -> {
             if (focus != -1) {
                 System.out.println("Đặt ghế");
@@ -81,33 +88,14 @@ public class ChonGhe extends JPanel {
                 }
             }
         });
-        add(button);
-        listButtonSlot = new ArrayList<>();
-        for (int i = 0; i < 80; i++) {
-            char t1 = (char) ('H' - (i / 10));
-            char t2 = (char) ('0' + (i % 10));
-            ButtonGhe jButton = new ButtonGhe(button.getBackground(), t1 + "" + t2);
-            jButton.setFont(new Font("Serif", Font.BOLD, 20));
-            jButton.setBounds(70 + (i % 10) * 95, (i / 10) * 95, 80, 80);
-            add(jButton, i);
-            listButtonSlot.add(jButton);
-        }
-
-        loadMap();
-
-        setSize(Global.WIDTH_SCREEN - 150, Global.HEIGHT_SCREEN);
-        setBounds(0, Header.HEIGHT_HEADER + 10, Global.WIDTH_SCREEN - 15, Global.HEIGHT_SCREEN - Header.HEIGHT_HEADER - 50);
-
-        addLabel(1100, 200, lich.getTenPhim());
-        addLabel(1100, 240, lich.getTenPhong());
-        addLabel(1100, 280, "Còn " + lich.getTenPhong() + " chỗ");
-        addLabel(1100, 480, "Vui lòng chọn ghế");
-        addLabel(500, 750, "Màn hình");
-
 
         JButton buttonBack = new JButton("Trở về");
         buttonBack.setFont(new Font("Serif", Font.BOLD, 20));
-        buttonBack.setBounds(1100, 400, 200, 50);
+        buttonBack.setBounds(
+                Global.THONG_TIN_X,
+                Global.BTN_SUBMIT_Y,
+                Global.BTN_SUBMIT_WIDTH,
+                Global.BTN_SUBMIT_HEIGHT);
         buttonBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,6 +103,36 @@ public class ChonGhe extends JPanel {
             }
         });
         add(buttonBack);
+
+        add(button);
+        listButtonSlot = new ArrayList<>();
+        for (int i = 0; i < 80; i++) {
+            char t1 = (char) ('H' - (i / 10));
+            char t2 = (char) ('0' + (i % 10));
+            ButtonGhe jButton = new ButtonGhe(button.getBackground(), t1 + "" + t2);
+            jButton.setFont(new Font("Serif", Font.BOLD, 20));
+            jButton.setBounds(Global.GHE_X + (i % 10) * Global.GHE_BOX_SIZE,
+                    Global.GHE_Y + (i / 10) * Global.GHE_BOX_SIZE,
+                    Global.GHE_SIZE,
+                    Global.GHE_SIZE);
+            add(jButton, i);
+            listButtonSlot.add(jButton);
+        }
+
+        loadMap();
+
+        setSize(Global.WIDTH_SCREEN - 150, Global.HEIGHT_SCREEN);
+        setBounds(0, Header.HEIGHT_HEADER, Global.WIDTH_SCREEN - 15, Global.HEIGHT_SCREEN - Header.HEIGHT_HEADER - 50);
+
+        addLabel(Global.THONG_TIN_LEFT, Global.THONG_TIN_TOP, lich.getTenPhim());
+        addLabel(Global.THONG_TIN_LEFT, Global.THONG_TIN_TOP + 40, lich.getNgay().toString());
+        addLabel(Global.THONG_TIN_LEFT, Global.THONG_TIN_TOP + 80, Global.getKhungGio(lich.getKhungGio()));
+        addLabel(Global.THONG_TIN_LEFT, Global.THONG_TIN_TOP + 120, lich.getTenPhong());
+        addLabel(Global.THONG_TIN_LEFT, Global.THONG_TIN_TOP + 160, "Còn " + (80 - listVe.size()) + " chỗ");
+        addLabel(Global.THONG_TIN_LEFT, Global.THONG_TIN_TOP + 250, "Vui lòng chọn ghế");
+        addLabel(Global.MAN_HINH_X, Global.MAN_HINH_Y, "Màn hình");
+
+
     }
 
     public void loadMap() {
@@ -154,8 +172,9 @@ public class ChonGhe extends JPanel {
 
     public void addLabel(int x, int y, String text) {
         JLabel jLabel = new JLabel(text);
-        jLabel.setFont(new Font("Serif", Font.BOLD, 20));
+        jLabel.setFont(new Font("Serif", Font.BOLD, 24));
         jLabel.setBounds(x, y, 400, 50);
+        listLabel.add(jLabel);
         add(jLabel);
     }
 
@@ -217,5 +236,13 @@ public class ChonGhe extends JPanel {
         public void resetColor() {
             setBackground(defaultColor);
         }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        g.fillRect(Global.THONG_TIN_X, Global.THONG_TIN_Y,
+                Global.WIDTH_SCREEN - Global.THONG_TIN_X, Global.PHIM_HEIGHT);
     }
 }
