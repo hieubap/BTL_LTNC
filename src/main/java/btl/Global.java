@@ -5,33 +5,33 @@ import btl.component.OptionSelect;
 import java.util.List;
 
 public class Global {
-    public static int WIDTH_SCREEN = 1500;
-    public static int HEIGHT_SCREEN = 900;
+    public static int WIDTH_SCREEN = 1000;
+    public static int HEIGHT_SCREEN = 700;
 
     // login
     public static int WIDTH_LOGIN = 400;
     public static int HEIGHT_LOGIN = 400;
     public static int WIDTH_CONTENT = 200;
     public static int HEIGHT_CONTENT = 50;
-    public static int POS_NAME_X = 480;
+    public static int POS_NAME_X = 220;
     public static int POS_NAME_Y = 100;
     public static int SIZE_NAME = 40;
 
 
     // header
-    public static int HEIGHT_HEADER = 80;
+    public static int HEIGHT_HEADER = 60;
     public static int HEADER_TITLE_SIZE = 30;
     public static int HEADER_TITLE_X = 20;
     public static int HEADER_TITLE_Y = HEIGHT_HEADER / 2 + HEADER_TITLE_SIZE / 4;
 
 
     // sidebar
-    public static int WIDTH_SIDEBAR = 250;
+    public static int WIDTH_SIDEBAR = 200;
 
     public static int HEIGHT_HEAD_TABLE = 50;
 
     // table
-    public static int TABLE_PADDING = 20;
+    public static int TABLE_PADDING = 10;
     public static int TABLE_HEIGHT_HEAD = 100;
 
     // button màn ds phim
@@ -42,20 +42,20 @@ public class Global {
     public static int PHIM_SIZE = PHIM_BOX_SIZE - PHIM_MARGIN * 2;
     public static int MAN_HINH_X = 400;
     public static int MAN_HINH_Y = 650;
-    public static int THONG_TIN_X = 900;
+    public static int THONG_TIN_X = 700;
     public static int THONG_TIN_Y = 0;
-    public static int THONG_TIN_LEFT = THONG_TIN_X + 100;
-    public static int THONG_TIN_TOP = THONG_TIN_Y + 100;
+    public static int THONG_TIN_LEFT = THONG_TIN_X + 50;
+    public static int THONG_TIN_TOP = THONG_TIN_Y + 50;
     public static int BTN_SUBMIT_HEIGHT = 60;
     public static int BTN_SUBMIT_WIDTH = (WIDTH_SCREEN - THONG_TIN_X) / 2;
     public static int BTN_SUBMIT_Y = HEIGHT_SCREEN - HEIGHT_HEADER - BTN_SUBMIT_HEIGHT - 50;
 
 
     // ds hàng ghế
-    public static int GHE_X = 60;
+    public static int GHE_X = 20;
     public static int GHE_Y = 20;
     public static int GHE_PADDING = 5;
-    public static int GHE_SIZE = 70;
+    public static int GHE_SIZE = 60;
     public static int GHE_BOX_SIZE = GHE_SIZE + GHE_PADDING;
 
     // modal

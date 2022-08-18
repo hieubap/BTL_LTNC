@@ -35,7 +35,7 @@ public class LoginScreen extends JPanel implements ActionListener {
             throw new RuntimeException(e);
         }
         int left = Global.WIDTH_SCREEN/2 - Global.WIDTH_CONTENT/2;
-        int top = 280;
+        int top = 180;
 
         JLabel jLabel = new JLabel("Username");
         jLabel.setBounds(left, top, 200, 60);
