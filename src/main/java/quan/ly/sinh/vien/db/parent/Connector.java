@@ -1,4 +1,4 @@
-package quan.ly.sinh.vien.db;
+package quan.ly.sinh.vien.db.parent;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

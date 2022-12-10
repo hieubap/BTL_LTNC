@@ -1,7 +1,5 @@
 package quan.ly.sinh.vien.db.parent;
 
-import quan.ly.sinh.vien.db.Connector;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

@@ -1,6 +1,6 @@
-package quan.ly.sinh.vien.db;
+package quan.ly.sinh.vien.db.parent;
 
-import quan.ly.sinh.vien.db.parent.QueryMonHoc;
+import quan.ly.sinh.vien.db.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
