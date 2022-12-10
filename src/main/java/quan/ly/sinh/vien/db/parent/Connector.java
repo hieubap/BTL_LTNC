@@ -14,22 +14,11 @@ public class Connector {
       throw new RuntimeException(e);
     }
     try {
-      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/quan_ly_hoc_sinh", "quanlm", "admin@123");
+      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/quan_ly_sinh_vien", "quanlm", "admin@123");
       System.out.println("Connect DB Success !!!");
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
-  }
-
-  public void test(){
-    add(1,2,3);
-  }
-  public int add(int a,int b){
-    return a + b;
-  }
-
-  public int add(int a,int b,int c){
-    return a + b+c;
   }
 
 }
