@@ -25,11 +25,11 @@ public class LoginScreen extends JPanel implements ActionListener {
 
     private WindowFrame windowFrame;
 
-    private QueryUser userManager;
+    private QueryUser queryUser;
 
     public LoginScreen(WindowFrame windowFrame) {
       this.windowFrame = windowFrame;
-      userManager = new QueryUser();
+      queryUser = new QueryUser();
       int left = MainApplication.Global.WIDTH_SCREEN/2 - MainApplication.Global.WIDTH_CONTENT/2;
       int top = 180;
 
@@ -73,7 +73,7 @@ public class LoginScreen extends JPanel implements ActionListener {
         errorLabel.setVisible(true);
         return;
       }
-      List<String> type = userManager.search(username,true);
+      List<String> type = queryUser.search(username,true);
       if (type != null) {
         if (type.get(1).equals(String.valueOf(passwordInput.getPassword()))) {
           usernameInput.setText("");
