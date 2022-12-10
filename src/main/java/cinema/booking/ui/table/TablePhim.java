@@ -15,7 +15,7 @@ public class TablePhim extends ParentTable{
 
   @Override
   public Integer[] getWidthCol() {
-    return new Integer[]{40,40,50,350,100,80,200};
+    return new Integer[]{60,60,50,350,100,80,200};
   }
 
   @Override

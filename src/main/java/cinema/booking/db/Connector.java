@@ -14,7 +14,7 @@ public class Connector {
       throw new RuntimeException(e);
     }
     try {
-      connection = DriverManager.getConnection("jdbc:mysql://192.168.1.6:3306/cinema", "quanlm", "admin@123");
+      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema", "quanlm", "admin@123");
       System.out.println("Connect DB Success !!!");
     } catch (SQLException e) {
       throw new RuntimeException(e);

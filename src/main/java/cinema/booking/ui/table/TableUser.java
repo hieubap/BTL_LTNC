@@ -13,7 +13,7 @@ public class TableUser extends ParentTable{
 
   @Override
   public Integer[] getWidthCol() {
-    return new Integer[]{40,40,60,100,180,80};
+    return new Integer[]{60,60,60,100,180,80};
   }
 
   @Override

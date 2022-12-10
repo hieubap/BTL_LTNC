@@ -14,7 +14,7 @@ public class TablePhong extends ParentTable{
 
   @Override
   public Integer[] getWidthCol() {
-    return new Integer[]{40,40,80,100,100};
+    return new Integer[]{60,60,80,100,100};
   }
 
   @Override
