@@ -106,8 +106,6 @@ public class CreateInitData {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-//        Class.forName("com.mysql.jdbc.Driver");
-//        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/dat_cho_xem_phim", "root", "123456");
         CreateInitData createInitData = new CreateInitData();
         createInitData.initTable();
         createInitData.initData();
